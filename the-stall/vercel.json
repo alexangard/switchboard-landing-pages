@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+          { "source": "/the-stall", "destination": "/" },
+          { "source": "/the-stall/:path*", "destination": "/:path*" },
+          { "source": "/manual-workflow", "destination": "https://switchboard-landing-manual-workflow.vercel.app/" },
+          { "source": "/manual-workflow/:path*", "destination": "https://switchboard-landing-manual-workflow.vercel.app/:path*" }
+    ]
+}
