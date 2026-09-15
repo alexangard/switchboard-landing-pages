@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Governed Data Playbook | Switchboard</title>
+<meta name="description" content="Why AI pilots impress in the room and go quiet by week three, and how to fix the data layer underneath before it becomes the reason another one stalls.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coral:#FF6234;
+    --coral-dark:#C4441E;
+    --bg:#FAFDFE;
+    --band:#F6F5F4;
+    --ink:#1C1C1C;
+    --ink-soft:#4A4A4A;
+    --ink-faint:#8A8A8A;
+    --line:#E4E2DF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Raleway',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);}
+  img{max-width:100%;}
+  a{color:inherit;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+
+  .top-rule{height:4px;background:var(--coral);width:100%;}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
+  .logo{font-weight:800;font-size:20px;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;}
+  .logo span{color:var(--coral);}
+  .btn{display:inline-block;font-weight:700;font-size:13px;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;padding:14px 26px;border-radius:6px;cursor:pointer;border:2px solid transparent;}
+  .btn-solid{background:var(--coral);color:#fff;}
+  .btn-solid:hover{background:var(--coral-dark);}
+  .btn-outline{background:transparent;color:var(--coral-dark);border-color:var(--coral);}
+  .btn-outline:hover{background:rgba(255,98,52,0.08);}
+
+  header.hero{padding:56px 0 40px;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;}
+  @media (max-width:860px){.hero-grid{grid-template-columns:1fr;gap:36px;}}
+  .eyebrow{display:inline-block;background:rgba(255,98,52,0.10);color:var(--coral-dark);font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:7px 14px;border-radius:4px;margin-bottom:22px;}
+  h1{font-size:46px;line-height:1.12;margin:0 0 20px;font-weight:600;letter-spacing:-0.01em;}
+  @media (max-width:640px){h1{font-size:34px;}}
+  .sub{font-size:18px;line-height:1.55;color:var(--ink-soft);margin:0 0 30px;max-width:520px;}
+  .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+  .cta-note{font-size:13px;color:var(--ink-faint);}
+
+  .rollout-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;}
+  .rollout-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .rollout-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);}
+  .rollout-status{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);}
+  .phase{display:flex;align-items:center;gap:12px;padding:9px 0;font-size:14px;}
+  .phase-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .phase.done .phase-dot{background:var(--coral);}
+  .phase.done{font-weight:700;}
+  .phase.paused .phase-dot{border:2px dashed var(--coral);background:#fff;}
+  .phase.paused{font-weight:700;}
+  .phase.faint{color:var(--ink-faint);}
+  .phase.faint .phase-dot{border:2px solid var(--line);background:#fff;}
+  .stall-bar{margin-top:14px;background:rgba(255,98,52,0.08);color:var(--coral-dark);text-align:center;font-weight:700;font-size:12px;letter-spacing:0.04em;text-transform:uppercase;border-radius:6px;padding:10px;border:1px solid rgba(255,98,52,0.30);}
+
+  .tool{padding:40px 0 40px;background:var(--band);}
+  .tool-head{max-width:600px;margin:0 auto 36px;text-align:center;}
+  .tool-head h2{margin:10px 0 12px;}
+  .tool-intro{font-size:16px;color:var(--ink-soft);margin:0;line-height:1.5;}
+  .tool-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:40px;max-width:600px;margin:0 auto;box-shadow:0 14px 34px rgba(0,0,0,0.08);}
+  @media (max-width:640px){.tool-card{padding:28px 22px;}}
+  .q-progress{display:flex;gap:6px;margin-bottom:28px;}
+  .q-dot{height:4px;flex:1;background:var(--line);border-radius:2px;transition:background .2s;}
+  .q-dot.done{background:var(--coral);}
+  .q-label{font-size:19px;font-weight:600;margin:0 0 20px;line-height:1.4;}
+  .q-options{display:flex;flex-direction:column;gap:10px;}
+  .opt{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px 18px;font-size:15px;font-family:inherit;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s;}
+  .opt:hover{border-color:var(--coral);background:rgba(255,98,52,0.04);}
+  .q-back{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-faint);cursor:pointer;background:none;border:none;font-family:inherit;padding:0;}
+  .q-back:hover{color:var(--coral-dark);}
+  .tool-result{background:#fff;border:1px solid var(--line);border-radius:16px;padding:44px 40px;max-width:600px;margin:0 auto;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,0.08);}
+  @media (max-width:640px){.tool-result{padding:32px 22px;}}
+  .result-badge{display:inline-block;font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:7px 16px;border-radius:20px;margin-bottom:18px;}
+  .result-badge.risk-critical{background:rgba(255,98,52,0.16);color:var(--coral-dark);border:1px solid rgba(255,98,52,0.35);}
+  .result-badge.risk-high{background:rgba(255,98,52,0.10);color:var(--coral-dark);}
+  .result-badge.risk-moderate{background:rgba(255,98,52,0.06);color:var(--coral-dark);}
+  .result-badge.risk-low{background:var(--band);color:var(--ink-soft);}
+  .tool-result h3{font-size:25px;font-weight:600;margin:0 0 12px;letter-spacing:-0.01em;}
+  .tool-result p{font-size:15px;color:var(--ink-soft);line-height:1.55;max-width:460px;margin:0 auto 18px;}
+  .result-gap{font-size:14px;font-weight:600;color:var(--ink);background:var(--band);border-radius:8px;padding:14px 18px;margin:0 auto 26px;max-width:460px;line-height:1.5;}
+  .result-restart{display:block;margin:18px auto 0;font-size:13px;color:var(--ink-faint);background:none;border:none;cursor:pointer;font-family:inherit;}
+  .result-restart:hover{color:var(--coral-dark);}
+
+  .proof{background:var(--band);padding:44px 0;text-align:center;}
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  @media (max-width:700px){.proof-grid{grid-template-columns:1fr;gap:22px;}}
+  .stat-num{color:var(--coral);font-size:34px;font-weight:800;margin-bottom:4px;}
+  .stat-label{font-size:14px;color:var(--ink-soft);line-height:1.4;max-width:280px;margin:0 auto;}
+  .disclaimer{margin-top:26px;font-size:12px;color:var(--ink-faint);}
+
+  section.how{padding:72px 0;text-align:center;}
+  .eyebrow-text{color:var(--coral-dark);font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:14px;}
+  h2{font-size:32px;font-weight:600;margin:0 0 46px;letter-spacing:-0.01em;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:left;}
+  @media (max-width:860px){.steps{grid-template-columns:1fr;}}
+  .step{border:1px solid var(--line);border-radius:12px;padding:26px;background:#fff;}
+  .step-icon{width:34px;height:34px;margin-bottom:16px;color:var(--coral);}
+  .step-num{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px;}
+  .step p{font-size:15px;line-height:1.5;color:var(--ink);margin:0;}
+
+  .mid-cta{padding:52px 0;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .mid-cta p{font-size:17px;color:var(--ink-soft);max-width:560px;margin:0 auto 24px;line-height:1.5;}
+
+  section.faq{padding:72px 0;}
+  .faq-head{text-align:center;margin-bottom:40px;}
+  .faq-item{border-top:1px solid var(--line);padding:22px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-q{font-weight:700;font-size:16px;margin:0 0 8px;}
+  .faq-a{font-size:15px;color:var(--ink-soft);line-height:1.55;margin:0;max-width:720px;}
+
+  section.offer{padding:16px 0 80px;}
+  .offer-card{background:var(--band);border-radius:16px;padding:48px;display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:center;}
+  @media (max-width:860px){.offer-card{grid-template-columns:1fr;padding:32px 24px;}}
+  .cover{background:#fff;border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,0.10);padding:26px;transform:rotate(-2deg);border-left:6px solid var(--coral);max-width:280px;margin:0 auto;}
+  .cover-logo{font-weight:800;font-size:16px;margin-bottom:18px;}
+  .cover-logo span{color:var(--coral);}
+  .cover-tag{color:var(--coral-dark);font-weight:700;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
+  .cover-title{font-size:20px;font-weight:700;line-height:1.25;margin-bottom:16px;}
+  .cover-foot{font-size:11px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:12px;}
+  .offer-eyebrow{color:var(--coral-dark);font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;}
+  .offer-card h3{font-size:26px;font-weight:600;margin:0 0 14px;letter-spacing:-0.01em;}
+  .offer-card .sub{font-size:15px;margin-bottom:26px;}
+  #playbook-form-wrap{background:#fff;border-radius:10px;padding:8px;min-height:80px;}
+  .form-fallback{font-size:13px;color:var(--ink-faint);padding:18px;text-align:center;}
+  .offer-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;}
+  .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-faint);}
+  .footer-links{display:flex;gap:20px;}
+  .footer-links a{text-decoration:none;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<div class="top-rule"></div>
+
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#top">sw<span>i</span>tchboard</a>
+    <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
+  </nav>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Claude on BigQuery</span>
+      <h1>Most AI Data Projects Stall After the Demo.</h1>
+      <p class="sub">Why AI pilots impress in the room and go quiet by week three, and how to fix the data layer underneath before it becomes the reason another one stalls.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
+        <span class="cta-note">Free white paper &middot; 12 pages</span>
+      </div>
+    </div>
+    <div class="rollout-card">
+      <div class="rollout-head">
+        <span class="rollout-label">Typical rollout</span>
+        <span class="rollout-status">Stalled</span>
+      </div>
+      <div class="phase done"><span class="phase-dot"></span>Phase 1 &middot; Demo built</div>
+      <div class="phase paused"><span class="phase-dot"></span>Phase 2 &middot; Data layer</div>
+      <div class="phase faint"><span class="phase-dot"></span>Phase 3 &middot; Team rollout</div>
+      <div class="phase faint"><span class="phase-dot"></span>Phase 4 &middot; In production</div>
+      <div class="stall-bar">No movement in 6 weeks</div>
+    </div>
+  </div>
+</header>
+
+<section class="tool" id="tool">
+  <div class="wrap">
+    <div class="tool-head">
+      <div class="eyebrow-text">Quick assessment</div>
+      <h2>How close is your rollout to stalling?</h2>
+      <p class="tool-intro">Four questions. An honest read on where you actually stand, not where the demo said you'd be by now.</p>
+    </div>
+
+    <div class="tool-card" id="quiz-card">
+      <div class="q-progress" id="q-progress">
+        <span class="q-dot" data-dot="0"></span>
+        <span class="q-dot" data-dot="1"></span>
+        <span class="q-dot" data-dot="2"></span>
+        <span class="q-dot" data-dot="3"></span>
+      </div>
+      <div class="q" data-step="0">
+        <div class="q-label">What phase is your AI initiative in?</div>
+        <div class="q-options">
+          <button class="opt" data-score="0">Demo built, not yet piloted</button>
+          <button class="opt" data-score="1">Piloting with one team</button>
+          <button class="opt" data-score="2">Rolling out to more teams</button>
+          <button class="opt" data-score="3">Already in production, broadly used</button>
+        </div>
+      </div>
+      <div class="q" data-step="1" hidden>
+        <div class="q-label">How is access to your underlying data controlled right now?</div>
+        <div class="q-options">
+          <button class="opt" data-score="0" data-gap="governance">No formal rules, mostly ad hoc</button>
+          <button class="opt" data-score="1" data-gap="governance">Some rules, but inconsistent across teams</button>
+          <button class="opt" data-score="2" data-gap="governance">Centralized, but it slows people down</button>
+          <button class="opt" data-score="3" data-gap="governance">Governed and scoped, doesn't block anyone</button>
+        </div>
+      </div>
+      <div class="q" data-step="2" hidden>
+        <div class="q-label">How long has it been since real progress was made?</div>
+        <div class="q-options">
+          <button class="opt" data-score="3" data-gap="momentum">This week</button>
+          <button class="opt" data-score="2" data-gap="momentum">2 to 4 weeks ago</button>
+          <button class="opt" data-score="1" data-gap="momentum">1 to 2 months ago</button>
+          <button class="opt" data-score="0" data-gap="momentum">3+ months ago, or honestly not sure</button>
+        </div>
+      </div>
+      <div class="q" data-step="3" hidden>
+        <div class="q-label">Who outside the build team has actually used it?</div>
+        <div class="q-options">
+          <button class="opt" data-score="0" data-gap="adoption">Just us</button>
+          <button class="opt" data-score="1" data-gap="adoption">One business stakeholder</button>
+          <button class="opt" data-score="2" data-gap="adoption">A full team</button>
+          <button class="opt" data-score="3" data-gap="adoption">Multiple teams or departments</button>
+        </div>
+      </div>
+      <button class="q-back" id="q-back" hidden>&larr; Back</button>
+    </div>
+
+    <div class="tool-result" id="tool-result" hidden>
+      <div class="result-badge" id="result-badge"></div>
+      <h3 id="result-title"></h3>
+      <p id="result-body"></p>
+      <div class="result-gap" id="result-gap"></div>
+      <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
+      <button class="result-restart" id="result-restart">Retake the assessment</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var steps = document.querySelectorAll('#quiz-card .q');
+  var dots = document.querySelectorAll('#q-progress .q-dot');
+  var backBtn = document.getElementById('q-back');
+  var quizCard = document.getElementById('quiz-card');
+  var resultEl = document.getElementById('tool-result');
+  var current = 0;
+  var answers = [];
+
+  function showStep(i){
+    steps.forEach(function(s, idx){ s.hidden = idx !== i; });
+    dots.forEach(function(d, idx){ d.classList.toggle('done', idx < i); });
+    backBtn.hidden = i === 0;
+  }
+
+  function finish(){
+    var total = 0;
+    answers.forEach(function(a){ total += a.score; });
+    var gapCounts = {};
+    answers.forEach(function(a){
+      if(a.gap){
+        if(!(a.gap in gapCounts) || a.score < gapCounts[a.gap]) gapCounts[a.gap] = a.score;
+      }
+    });
+    var priority = ['governance','momentum','adoption'];
+    var worstGap = null, worstScore = 99;
+    priority.forEach(function(g){
+      if(g in gapCounts && gapCounts[g] < worstScore){ worstScore = gapCounts[g]; worstGap = g; }
+    });
+
+    var gapCopy = {
+      governance: "Your biggest gap: data governance isn't in place yet, and that's almost always what a stalled pilot is actually waiting on.",
+      momentum: "Your biggest gap: nothing's moved in a while, and rollouts rarely restart on their own.",
+      adoption: "Your biggest gap: this is still living with the build team. It won't scale until it does."
+    };
+
+    var badge, badgeClass, title, body;
+    if(total <= 3){
+      badge = 'Critical stall risk'; badgeClass = 'risk-critical';
+      title = "This one's stalling.";
+      body = "This matches the pattern right before an AI pilot quietly dies: the demo landed, but the data layer underneath never caught up, and nothing's moved in a while.";
+    } else if(total <= 6){
+      badge = 'High stall risk'; badgeClass = 'risk-high';
+      title = "You're at the point most pilots stall.";
+      body = "Real interest exists, but the governance work hasn't caught up with it yet. This is exactly the phase the playbook is written for.";
+    } else if(total <= 9){
+      badge = 'Moderate stall risk'; badgeClass = 'risk-moderate';
+      title = "Ahead of most, not out of the woods.";
+      body = "You're further along than most pilots we see, but the data layer is still the thing to get right before this goes further.";
+    } else {
+      badge = 'Low stall risk'; badgeClass = 'risk-low';
+      title = "You're moving well.";
+      body = "You're doing the things that keep rollouts from stalling. The playbook is still worth a read for what to check before scaling further.";
+    }
+
+    var badgeEl = document.getElementById('result-badge');
+    badgeEl.textContent = badge;
+    badgeEl.className = 'result-badge ' + badgeClass;
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-body').textContent = body;
+    var gapEl = document.getElementById('result-gap');
+    if(worstGap){
+      gapEl.textContent = gapCopy[worstGap];
+      gapEl.hidden = false;
+    } else {
+      gapEl.hidden = true;
+    }
+
+    quizCard.hidden = true;
+    resultEl.hidden = false;
+  }
+
+  steps.forEach(function(stepEl, stepIdx){
+    var opts = stepEl.querySelectorAll('.opt');
+    opts.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        answers[stepIdx] = { score: parseInt(opt.getAttribute('data-score'),10), gap: opt.getAttribute('data-gap') };
+        if(stepIdx < steps.length - 1){
+          current = stepIdx + 1;
+          showStep(current);
+        } else {
+          finish();
+        }
+      });
+    });
+  });
+
+  backBtn.addEventListener('click', function(){
+    if(current > 0){
+      current -= 1;
+      showStep(current);
+    }
+  });
+
+  document.getElementById('result-restart').addEventListener('click', function(){
+    answers = [];
+    current = 0;
+    quizCard.hidden = false;
+    resultEl.hidden = true;
+    showStep(0);
+  });
+
+  showStep(0);
+})();
+</script>
+
+<section class="proof">
+  <div class="wrap">
+    <div class="proof-grid">
+      <div><div class="stat-num">3 in 4</div><div class="stat-label">stalled AI initiatives trace back to data readiness, not the model</div></div>
+      <div><div class="stat-num">6 weeks</div><div class="stat-label">a promising pilot typically sits idle before anyone calls it stalled</div></div>
+      <div><div class="stat-num">1 of 4</div><div class="stat-label">rollout phases is where most programs stop</div></div>
+    </div>
+    <div class="disclaimer">Reflects patterns we consistently see in stalled AI rollouts, not a formal study.</div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="wrap">
+    <div class="eyebrow-text">How it works</div>
+    <h2>Fix the layer the demo skipped</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">Step 1</div>
+        <p>The demo works, it's built on a curated sample, not your governed production data</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 2</div>
+        <p>Switchboard unifies and governs the real data layer, with IAM-scoped, restrictive-by-default access before any model touches it</p>
+      </div>
+      <div class="step">
+        <div class="step-num">Step 3</div>
+        <p>Your rollout keeps moving into team rollout and production, instead of stalling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mid-cta">
+  <div class="wrap">
+    <p>Most of this is covered in the playbook, along with what has to be true before the next phase actually happens.</p>
+    <a class="btn btn-outline" href="#playbook">Get the Playbook</a>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <div class="eyebrow-text">Common questions</div>
+      <h2 style="margin-bottom:0;">Before you download it</h2>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is this Switchboard's own analysis, or independent research?</p>
+      <p class="faq-a">It's Switchboard's own perspective, based on what we see governing data for AI and analytics programs. We've written it to be useful on its own, whether or not you ever talk to us.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What's actually inside it?</p>
+      <p class="faq-a">Three things: why demos stall at the data layer specifically, what &ldquo;governed&rdquo; actually has to mean before a pilot reaches production, and the questions to ask your own team before scoping the next phase.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does this apply if we're not on BigQuery yet?</p>
+      <p class="faq-a">The examples are BigQuery-first since that's where we see this most, but the underlying data governance problem doesn't change much by warehouse.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Who is this written for?</p>
+      <p class="faq-a">Whoever owns the initiative's outcome, not just the team running the pilot. It assumes you're evaluating this, not implementing it yourself.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Will someone from Switchboard reach out?</p>
+      <p class="faq-a">Only if it looks like a real fit. No call is required to read the playbook.</p>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="playbook">
+  <div class="wrap">
+    <div class="offer-card">
+      <div class="cover">
+        <div class="cover-logo">sw<span>i</span>tchboard</div>
+        <div class="cover-tag">White paper</div>
+        <div class="cover-title">The Governed Data Playbook</div>
+        <div class="cover-foot">switchboard-software.com</div>
+      </div>
+      <div>
+        <div class="offer-eyebrow">Free white paper</div>
+        <h3>Fix the data layer before the next pilot stalls.</h3>
+        <p class="sub">A practical read on what has to be true of your data before an AI initiative reaches production: governance, definitions, and access that survive past the demo.</p>
+        <div id="playbook-form-wrap">
+          <div class="form-fallback" id="form-fallback">Loading form&hellip;</div>
+          <script src="https://js-na2.hsforms.net/forms/embed/20563228.js" defer></script>
+          <div class="hs-form-frame" data-region="na2" data-form-id="f8c68b6c-a871-4a41-9221-f3480c60360b" data-portal-id="20563228"></div>
+        </div>
+        <script>
+          (function(){
+            var fallback = document.getElementById('form-fallback');
+            var frame = document.querySelector('.hs-form-frame');
+            if(!fallback || !frame) return;
+            function hideIfReady(){
+              if(frame.children.length > 0){
+                fallback.style.display = 'none';
+                return true;
+              }
+              return false;
+            }
+            if(hideIfReady()) return;
+            var obs = new MutationObserver(function(){ if(hideIfReady()) obs.disconnect(); });
+            obs.observe(frame, {childList:true, subtree:true});
+            setTimeout(function(){ obs.disconnect(); }, 15000);
+          })();
+        </script>
+        <div class="offer-foot">No sales call required. Unsubscribe any time.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <a class="logo" href="#top" style="font-size:16px;">sw<span>i</span>tchboard</a>
+    <div class="footer-links">
+      <a href="https://switchboard-software.com" target="_blank" rel="noopener">switchboard-software.com</a>
+      <a href="#">Privacy policy</a>
+    </div>
+    <div>&copy; 2026 Switchboard</div>
+  </div>
+</footer>
+
+</body>
+</html>
