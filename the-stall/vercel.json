@@ -1,8 +1,10 @@
 {
-    "rewrites": [
-          { "source": "/the-stall", "destination": "/" },
-          { "source": "/the-stall/:path*", "destination": "/:path*" },
-          { "source": "/manual-workflow", "destination": "https://switchboard-landing-manual-workflow.vercel.app/" },
-          { "source": "/manual-workflow/:path*", "destination": "https://switchboard-landing-manual-workflow.vercel.app/:path*" }
-    ]
+"rewrites": [
+{ "source": "/the-stall", "destination": "/" },
+{ "source": "/the-stall/:path*", "destination": "/:path*" },
+{ "source": "/manual-workflow", "destination": "https://switchboard-landing-manual-workflow.vercel.app/" },
+{ "source": "/manual-workflow/:path*", "destination": "https://switchboard-landing-manual-workflow.vercel.app/:path*" },
+{ "source": "/stale-data", "destination": "https://switchboard-landing-stale-data.vercel.app/" },
+{ "source": "/stale-data/:path*", "destination": "https://switchboard-landing-stale-data.vercel.app/:path*" }
+]
 }
