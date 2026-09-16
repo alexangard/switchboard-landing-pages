@@ -43,8 +43,9 @@
   .top-rule{height:4px;background:var(--coral);width:100%;}
 
   nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0;}
-  .logo{font-weight:800;font-size:20px;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;}
-  .logo span{color:var(--coral);}
+  .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0;}
+  .logo img{height:40px;width:auto;display:block;}
+  footer .logo img{height:28px;}
   .btn{display:inline-block;font-weight:700;font-size:13px;letter-spacing:0.03em;text-transform:uppercase;text-decoration:none;padding:14px 26px;border-radius:6px;cursor:pointer;border:2px solid transparent;}
   .btn-solid{background:var(--coral);color:#fff;}
   .btn-solid:hover{background:var(--coral-dark);}
@@ -134,8 +135,8 @@
   .offer-card{background:var(--band);border-radius:16px;padding:48px;display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:center;}
   @media (max-width:860px){.offer-card{grid-template-columns:1fr;padding:32px 24px;}}
   .cover{background:#fff;border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,0.10);padding:26px;transform:rotate(-2deg);border-left:6px solid var(--coral);max-width:280px;margin:0 auto;}
-  .cover-logo{font-weight:800;font-size:16px;margin-bottom:18px;}
-  .cover-logo span{color:var(--coral);}
+  .cover-logo{margin-bottom:18px;line-height:0;}
+  .cover-logo img{height:24px;width:auto;display:block;}
   .cover-tag{color:var(--coral-dark);font-weight:700;font-size:10px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
   .cover-title{font-size:20px;font-weight:700;line-height:1.25;margin-bottom:16px;}
   .cover-foot{font-size:11px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:12px;}
@@ -157,7 +158,7 @@
 
 <div class="wrap">
   <nav>
-    <a class="logo" href="https://switchboard-software.com/" target="_blank" rel="noopener">sw<span>i</span>tchboard</a>
+    <a class="logo" href="https://switchboard-software.com/" target="_blank" rel="noopener"><img src="/switchboard-logo.svg" alt="Switchboard" width="290" height="73"></a>
     <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
   </nav>
 </div>
@@ -431,7 +432,7 @@
   <div class="wrap">
     <div class="offer-card">
       <div class="cover">
-        <div class="cover-logo">sw<span>i</span>tchboard</div>
+        <div class="cover-logo"><img src="/switchboard-logo.svg" alt="Switchboard" width="290" height="73"></div>
         <div class="cover-tag">White paper</div>
         <div class="cover-title">The Governed Data Playbook</div>
         <div class="cover-foot">switchboard-software.com</div>
@@ -471,7 +472,7 @@
 
 <footer>
   <div class="wrap footer-row">
-    <a class="logo" href="https://switchboard-software.com/" target="_blank" rel="noopener" style="font-size:16px;">sw<span>i</span>tchboard</a>
+    <a class="logo" href="https://switchboard-software.com/" target="_blank" rel="noopener"><img src="/switchboard-logo.svg" alt="Switchboard" width="290" height="73"></a>
     <div class="footer-links">
       <a href="https://switchboard-software.com" target="_blank" rel="noopener">switchboard-software.com</a>
       <a href="https://switchboard-software.com/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a>
