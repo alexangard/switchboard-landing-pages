@@ -8,6 +8,10 @@
     { "source": "/manual-workflow", "destination": "https://switchboard-landing-manual-workflow.vercel.app/" },
     { "source": "/manual-workflow/:path*", "destination": "https://switchboard-landing-manual-workflow.vercel.app/:path*" },
     { "source": "/stale-data", "destination": "https://switchboard-landing-stale-data.vercel.app/" },
-    { "source": "/stale-data/:path*", "destination": "https://switchboard-landing-stale-data.vercel.app/:path*" }
+    { "source": "/stale-data/:path*", "destination": "https://switchboard-landing-stale-data.vercel.app/:path*" },
+    { "source": "/data-readiness", "destination": "https://switchboard-landing-data-readiness.vercel.app/" },
+    { "source": "/data-readiness/:path*", "destination": "https://switchboard-landing-data-readiness.vercel.app/:path*" },
+    { "source": "/analyst-time", "destination": "https://switchboard-landing-analyst-time.vercel.app/" },
+    { "source": "/analyst-time/:path*", "destination": "https://switchboard-landing-analyst-time.vercel.app/:path*" }
   ]
 }

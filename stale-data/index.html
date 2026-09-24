@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stop Reporting on Last Week. | Switchboard</title>
-<meta name="description" content="Switchboard governs your BigQuery data so you always see what's happening right now, not what happened days ago.">
+<title>Stop Reporting on Last Week's Revenue. | Switchboard</title>
+<meta name="description" content="Campaigns pace daily and yield moves hourly. Switchboard governs publisher revenue data in BigQuery so teams can ask Claude what is happening right now.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Stop Reporting on Last Week.">
-<meta property="og:description" content="Switchboard governs your BigQuery data so you always see what's happening right now, not what happened days ago.">
+<meta property="og:title" content="Stop Reporting on Last Week's Revenue.">
+<meta property="og:description" content="Campaigns pace daily and yield moves hourly. Switchboard governs publisher revenue data in BigQuery so teams can ask Claude what is happening right now.">
 <meta property="og:image" content="https://landing.switchboard-software.com/og-stale-data.png">
 <meta property="og:url" content="https://landing.switchboard-software.com/stale-data">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stop Reporting on Last Week.">
-<meta name="twitter:description" content="Switchboard governs your BigQuery data so you always see what's happening right now, not what happened days ago.">
+<meta name="twitter:title" content="Stop Reporting on Last Week's Revenue.">
+<meta name="twitter:description" content="Campaigns pace daily and yield moves hourly. Switchboard governs publisher revenue data in BigQuery so teams can ask Claude what is happening right now.">
 <meta name="twitter:image" content="https://landing.switchboard-software.com/og-stale-data.png">
 <!-- HubSpot tracking: captures UTM parameters and page analytics into contact records -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/20563228.js"></script>
@@ -151,6 +151,31 @@
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-faint);}
   .footer-links{display:flex;gap:20px;}
   .footer-links a{text-decoration:none;color:var(--ink-faint);}
+
+  /* publisher narrowing (2026-09-22) */
+  [hidden]{display:none !important;}
+  @media (max-width:480px){nav .btn{padding:10px 14px;font-size:11px;white-space:nowrap;} nav .logo img{height:30px;}}
+  .eyebrow-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .eyebrow-row .eyebrow{margin-bottom:0;}
+  .eyebrow-aud{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 13px;border-radius:4px;}
+  .phase-time{margin-left:auto;font-size:12px;color:var(--ink-faint);font-weight:400;}
+  .built-for{border-top:1px solid var(--line);padding:18px 0;}
+  .built-row{display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;}
+  .built-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .role-chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .role-chips span{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:6px 13px;background:#fff;color:var(--ink);}
+  .built-note{margin-left:auto;font-size:13px;color:var(--ink-faint);}
+  @media (max-width:860px){.built-note{margin-left:0;}}
+  .role-box{background:rgba(255,98,52,0.06);border:1px solid rgba(255,98,52,0.25);border-radius:8px;padding:16px 18px;margin:0 auto 26px;max-width:460px;text-align:left;}
+  .role-box-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:6px;}
+  .tool-result .role-box p{font-size:14px;color:var(--ink);margin:0;max-width:none;line-height:1.5;}
+  section.roles{padding:0 0 72px;text-align:center;}
+  .role-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;}
+  @media (max-width:1000px){.role-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.role-grid{grid-template-columns:1fr;}}
+  .role-card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;}
+  .role-card-name{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:10px;}
+  .role-card p{font-size:14px;line-height:1.5;margin:0;color:var(--ink);}
 </style>
 </head>
 <body>
@@ -166,9 +191,9 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Claude on BigQuery</span>
-      <h1>Stop Reporting on Last Week.</h1>
-      <p class="sub">Switchboard governs your BigQuery data so you always see what's happening right now, not what happened days ago.</p>
+      <div class="eyebrow-row"><span class="eyebrow">Claude on BigQuery</span><span class="eyebrow-aud">For publishers and media companies</span></div>
+      <h1>Stop Reporting on Last Week's Revenue.</h1>
+      <p class="sub">Campaigns pace daily and yield moves hourly. Switchboard governs your publisher revenue data in BigQuery so ad ops, yield and sales teams can ask Claude what is happening right now, not what the deck said six days ago.</p>
       <div class="cta-row">
         <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
         <span class="cta-note">Free white paper &middot; 12 pages</span>
@@ -176,23 +201,31 @@
     </div>
     <div class="rollout-card">
       <div class="rollout-head">
-        <span class="rollout-label">Dashboard status</span>
+        <span class="rollout-label">Yield dashboard</span>
         <span class="rollout-status">Stale</span>
       </div>
-      <div class="phase faint"><span class="phase-dot"></span>Campaign spend<span class="phase-time">6 days ago</span></div>
-      <div class="phase faint"><span class="phase-dot"></span>Conversion rate<span class="phase-time">6 days ago</span></div>
-      <div class="phase faint"><span class="phase-dot"></span>Budget pacing<span class="phase-time">6 days ago</span></div>
+      <div class="phase faint"><span class="phase-dot"></span>Fill rate<span class="phase-time">6 days ago</span></div>
+      <div class="phase faint"><span class="phase-dot"></span>Avg CPM<span class="phase-time">6 days ago</span></div>
+      <div class="phase faint"><span class="phase-dot"></span>Sell-through<span class="phase-time">6 days ago</span></div>
       <div class="stall-bar">6 days behind what's actually happening</div>
     </div>
   </div>
 </header>
 
+<div class="built-for">
+  <div class="wrap built-row">
+    <span class="built-label">Built for revenue teams at publishers and media companies</span>
+    <div class="role-chips"><span>Programmatic and yield</span><span>Direct sales</span><span>Ad ops</span><span>Rev ops</span><span>BI and data</span></div>
+    <span class="built-note">Not a publisher? This one probably isn't for you.</span>
+  </div>
+</div>
+
 <section class="tool" id="tool">
   <div class="wrap">
     <div class="tool-head">
       <div class="eyebrow-text">Quick assessment</div>
-      <h2>How stale is your data, really?</h2>
-      <p class="tool-intro">Four questions. An honest read on the lag between when something happens and when your team actually finds out.</p>
+      <h2>How stale is your revenue data, really?</h2>
+      <p class="tool-intro">Six questions. An honest read on your reporting lag, plus what it means for your role.</p>
     </div>
 
     <div class="tool-card" id="quiz-card">
@@ -201,40 +234,62 @@
         <span class="q-dot" data-dot="1"></span>
         <span class="q-dot" data-dot="2"></span>
         <span class="q-dot" data-dot="3"></span>
+        <span class="q-dot" data-dot="4"></span>
+        <span class="q-dot" data-dot="5"></span>
       </div>
-      <div class="q" data-step="0">
-        <div class="q-label">How often does your team get updated numbers from BigQuery?</div>
+      <div class="q" data-step="0" data-profile="company">
+        <div class="q-label">Which best describes your company?</div>
         <div class="q-options">
-          <button class="opt" data-score="0">Only when someone manually pulls a report</button>
-          <button class="opt" data-score="1">Weekly refresh</button>
-          <button class="opt" data-score="2">Daily refresh</button>
-          <button class="opt" data-score="3">Real-time or same-day</button>
+          <button class="opt" data-value="publisher">Publisher or media company</button>
+          <button class="opt" data-value="adtech">Ad tech or platform</button>
+          <button class="opt" data-value="agency">Agency, brand or advertiser</button>
+          <button class="opt" data-value="other">Something else</button>
         </div>
       </div>
-      <div class="q" data-step="1" hidden>
-        <div class="q-label">How long does it usually take to notice something's off, a metric drifting, a budget overrun?</div>
+      <div class="q" data-step="1" data-profile="role" hidden>
+        <div class="q-label">What is your role closest to?</div>
         <div class="q-options">
-          <button class="opt" data-score="0" data-gap="detection">We usually find out after it's already a problem</button>
+          <button class="opt" data-value="programmatic">Programmatic or yield</button>
+          <button class="opt" data-value="sales">Direct sales or partnerships</button>
+          <button class="opt" data-value="adops">Ad ops</button>
+          <button class="opt" data-value="revops">Rev ops or finance</button>
+          <button class="opt" data-value="bi">BI or data</button>
+          <button class="opt" data-value="exec">Executive leadership</button>
+        </div>
+      </div>
+      <div class="q" data-step="2" hidden>
+        <div class="q-label">How often does your revenue team get updated numbers across the ad server, SSPs and direct?</div>
+        <div class="q-options">
+          <button class="opt" data-score="0">Only when someone pulls a report</button>
+          <button class="opt" data-score="1">Weekly</button>
+          <button class="opt" data-score="2">Daily</button>
+          <button class="opt" data-score="3">Same-day or real-time</button>
+        </div>
+      </div>
+      <div class="q" data-step="3" hidden>
+        <div class="q-label">How long until someone notices a campaign under-delivering or a yield drop?</div>
+        <div class="q-options">
+          <button class="opt" data-score="0" data-gap="detection">After it's already a make-good</button>
           <button class="opt" data-score="1" data-gap="detection">About a week</button>
           <button class="opt" data-score="2" data-gap="detection">A few days</button>
           <button class="opt" data-score="3" data-gap="detection">Same day</button>
         </div>
       </div>
-      <div class="q" data-step="2" hidden>
-        <div class="q-label">Who's actually waiting on that data before they can act?</div>
+      <div class="q" data-step="4" hidden>
+        <div class="q-label">Who is waiting on those numbers before they can act?</div>
         <div class="q-options">
-          <button class="opt" data-score="0" data-gap="reach">Leadership, or decisions above my pay grade</button>
-          <button class="opt" data-score="1" data-gap="reach">Multiple teams, cross-functional</button>
+          <button class="opt" data-score="0" data-gap="reach">Leadership</button>
+          <button class="opt" data-score="1" data-gap="reach">Multiple revenue teams</button>
           <button class="opt" data-score="2" data-gap="reach">My immediate team</button>
           <button class="opt" data-score="3" data-gap="reach">Just me</button>
         </div>
       </div>
-      <div class="q" data-step="3" hidden>
+      <div class="q" data-step="5" hidden>
         <div class="q-label">What happens when the numbers are late?</div>
         <div class="q-options">
-          <button class="opt" data-score="0" data-gap="consequence">It turns into a bigger, costlier problem</button>
-          <button class="opt" data-score="1" data-gap="consequence">We miss the window to fix it</button>
-          <button class="opt" data-score="2" data-gap="consequence">We lose a few days of optimization</button>
+          <button class="opt" data-score="0" data-gap="consequence">Make-goods and lost revenue</button>
+          <button class="opt" data-score="1" data-gap="consequence">We miss the window to fix pacing</button>
+          <button class="opt" data-score="2" data-gap="consequence">A few days of lost optimization</button>
           <button class="opt" data-score="3" data-gap="consequence">Nothing major, we adjust</button>
         </div>
       </div>
@@ -246,11 +301,33 @@
       <h3 id="result-title"></h3>
       <p id="result-body"></p>
       <div class="result-gap" id="result-gap"></div>
+      <div class="role-box" id="role-box" hidden>
+        <div class="role-box-label" id="role-box-label"></div>
+        <p id="role-box-text"></p>
+      </div>
       <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
       <button class="result-restart" id="result-restart">Retake the assessment</button>
     </div>
   </div>
 </section>
+
+<script>
+/* Profile answers (company + role) and the role-specific result box. */
+window.SB_PROFILE = {};
+window.sbRenderRole = function(copy){
+  var p = window.SB_PROFILE, box = document.getElementById('role-box');
+  if(!box) return;
+  var names = {programmatic:'programmatic and yield', sales:'direct sales', adops:'ad ops', revops:'rev ops', bi:'BI and data', exec:'revenue leadership'};
+  if(p.company && p.company !== 'publisher'){
+    document.getElementById('role-box-label').textContent = 'A quick note';
+    document.getElementById('role-box-text').textContent = "Switchboard is built around publisher revenue data, so this may not map cleanly to your setup. The playbook is still a useful read, and our team is happy to point you in the right direction.";
+  } else if(p.role && copy[p.role]){
+    document.getElementById('role-box-label').textContent = 'What this means for ' + names[p.role];
+    document.getElementById('role-box-text').textContent = copy[p.role];
+  } else { box.hidden = true; return; }
+  box.hidden = false;
+};
+</script>
 
 <script>
 (function(){
@@ -270,10 +347,10 @@
 
   function finish(){
     var total = 0;
-    answers.forEach(function(a){ total += a.score; });
+    answers.forEach(function(a){ if(a) total += a.score; });
     var gapCounts = {};
     answers.forEach(function(a){
-      if(a.gap){
+      if(a && a.gap){
         if(!(a.gap in gapCounts) || a.score < gapCounts[a.gap]) gapCounts[a.gap] = a.score;
       }
     });
@@ -321,6 +398,14 @@
       gapEl.hidden = true;
     }
 
+    window.sbRenderRole({
+    programmatic: "Floor and pricing calls get made on last week's fill rate and CPMs, so every drift costs days of revenue before anyone sees it.",
+    sales: "You find out about under-delivery when the advertiser does.",
+    adops: "Pacing problems become make-goods because the report arrived after the window closed.",
+    revops: "Forecasts are built on numbers that are already a week old.",
+    bi: "Every 'what is happening right now' request becomes a one-off pull.",
+    exec: "You're steering the business on a snapshot of a week that has already been billed."
+  });
     quizCard.hidden = true;
     resultEl.hidden = false;
   }
@@ -329,7 +414,9 @@
     var opts = stepEl.querySelectorAll('.opt');
     opts.forEach(function(opt){
       opt.addEventListener('click', function(){
-        answers[stepIdx] = { score: parseInt(opt.getAttribute('data-score'),10), gap: opt.getAttribute('data-gap') };
+        var prof = stepEl.getAttribute('data-profile');
+        if(prof){ window.SB_PROFILE[prof] = opt.getAttribute('data-value'); }
+        answers[stepIdx] = prof ? null : { score: parseInt(opt.getAttribute('data-score'),10), gap: opt.getAttribute('data-gap') };
         if(stepIdx < steps.length - 1){
           current = stepIdx + 1;
           showStep(current);
@@ -349,6 +436,7 @@
 
   document.getElementById('result-restart').addEventListener('click', function(){
     answers = [];
+    window.SB_PROFILE = {};
     current = 0;
     quizCard.hidden = false;
     resultEl.hidden = true;
@@ -362,31 +450,45 @@
 <section class="proof">
   <div class="wrap">
     <div class="proof-grid">
-      <div><div class="stat-num">6 days</div><div class="stat-label">how old the numbers behind a typical weekly report already are by the time anyone reads them</div></div>
-      <div><div class="stat-num">1 in 3</div><div class="stat-label">performance issues we see caught only after the reporting cycle, not before</div></div>
-      <div><div class="stat-num">0</div><div class="stat-label">manual exports or waiting on an analyst needed to ask Claude what's happening right now</div></div>
+      <div><div class="stat-num">6 days</div><div class="stat-label">how old the numbers behind a typical weekly revenue report are by the time anyone reads them</div></div>
+      <div><div class="stat-num">1 in 3</div><div class="stat-label">pacing and yield issues we see caught only after the reporting cycle, not before</div></div>
+      <div><div class="stat-num">0</div><div class="stat-label">manual pulls needed to ask Claude what is happening right now</div></div>
     </div>
-    <div class="disclaimer">Reflects patterns we consistently see in batch-reported data, not a formal study.</div>
+    <div class="disclaimer">Reflects patterns we consistently see across publisher revenue teams, not a formal study.</div>
   </div>
 </section>
 
 <section class="how">
   <div class="wrap">
     <div class="eyebrow-text">How it works</div>
-    <h2>Close the gap between now and your dashboard</h2>
+    <h2>Close the gap between now and your revenue report</h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">Step 1</div>
-        <p>Most dashboards run on a batch refresh, daily or weekly at best, so what you're looking at is already old by the time you see it</p>
+        <p>Revenue reporting is assembled weekly across the ad server, SSPs, direct IO, subscriptions and finance, then circulated as a snapshot</p>
       </div>
       <div class="step">
         <div class="step-num">Step 2</div>
-        <p>Switchboard governs your BigQuery data so Claude can answer directly from the live, governed layer, not a cached report</p>
+        <p>Switchboard unifies and governs your revenue data layer in BigQuery, with IAM-scoped, restrictive-by-default access before any model touches it</p>
       </div>
       <div class="step">
         <div class="step-num">Step 3</div>
-        <p>You ask a question and get today's answer, not last week's dashboard</p>
+        <p>Ad ops, yield and sales ask Claude what is happening now and get a governed answer, not last week's deck</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="roles">
+  <div class="wrap">
+    <div class="eyebrow-text">By role</div>
+    <h2>What a week of lag costs your team</h2>
+    <div class="role-grid">
+      <div class="role-card"><div class="role-card-name">Programmatic and yield</div><p>Floor and pricing calls get made on last week's fill rate and CPMs, so every drift costs days of revenue before anyone sees it.</p></div>
+      <div class="role-card"><div class="role-card-name">Direct sales</div><p>You find out about under-delivery when the advertiser does.</p></div>
+      <div class="role-card"><div class="role-card-name">Ad ops</div><p>Pacing problems become make-goods because the report arrived after the window closed.</p></div>
+      <div class="role-card"><div class="role-card-name">Rev ops</div><p>Forecasts are built on numbers that are already a week old.</p></div>
+      <div class="role-card"><div class="role-card-name">BI and data</div><p>Every 'what is happening right now' request becomes a one-off pull.</p></div>
     </div>
   </div>
 </section>
@@ -418,7 +520,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">Who is this written for?</p>
-      <p class="faq-a">Anyone who's waiting on a dashboard to know what's happening, not just the team that built it.</p>
+      <p class="faq-a">Revenue leaders at publishers and media companies: programmatic and yield, direct sales, ad ops, rev ops and BI. If you are not on the publisher side, it will be less directly useful.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Will someone from Switchboard reach out?</p>
@@ -438,8 +540,8 @@
       </div>
       <div>
         <div class="offer-eyebrow">Free white paper</div>
-        <h3>See what's happening now, not last week.</h3>
-        <p class="sub">A practical read on what has to be true of your data before real-time answers actually work: governance, freshness, and access that survive past the dashboard.</p>
+        <h3>See this week's revenue, not last week's.</h3>
+        <p class="sub">A practical read on what has to be true of publisher revenue data before real-time answers actually work: governance, freshness, and access that survive past the dashboard.</p>
         <div id="playbook-form-wrap">
           <div class="form-fallback" id="form-fallback">Loading form&hellip;</div>
           <script src="https://js-na2.hsforms.net/forms/embed/20563228.js" defer></script>

@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stop Exporting. Start Asking. | Switchboard</title>
-<meta name="description" content="Switchboard governs your BigQuery data so your team can ask Claude direct questions, no manual exports, no waiting on an analyst.">
+<title>Stop Rebuilding Revenue Reports. Start Asking. | Switchboard</title>
+<meta name="description" content="For publisher revenue teams who rebuild the same advertiser picture from ad server, SSP and finance exports every week.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Stop Exporting. Start Asking.">
-<meta property="og:description" content="Switchboard governs your BigQuery data so your team can ask Claude direct questions, no manual exports, no waiting on an analyst.">
+<meta property="og:title" content="Stop Rebuilding Revenue Reports. Start Asking.">
+<meta property="og:description" content="For publisher revenue teams who rebuild the same advertiser picture from ad server, SSP and finance exports every week.">
 <meta property="og:image" content="https://landing.switchboard-software.com/og-manual-workflow.png">
 <meta property="og:url" content="https://landing.switchboard-software.com/manual-workflow">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Stop Exporting. Start Asking.">
-<meta name="twitter:description" content="Switchboard governs your BigQuery data so your team can ask Claude direct questions, no manual exports, no waiting on an analyst.">
+<meta name="twitter:title" content="Stop Rebuilding Revenue Reports. Start Asking.">
+<meta name="twitter:description" content="For publisher revenue teams who rebuild the same advertiser picture from ad server, SSP and finance exports every week.">
 <meta name="twitter:image" content="https://landing.switchboard-software.com/og-manual-workflow.png">
 <!-- HubSpot tracking: captures UTM parameters and page analytics into contact records -->
 <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/20563228.js"></script>
@@ -143,6 +143,31 @@
   .footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--ink-faint);}
   .footer-links{display:flex;gap:20px;}
   .footer-links a{text-decoration:none;color:var(--ink-faint);}
+
+  /* publisher narrowing (2026-09-22) */
+  [hidden]{display:none !important;}
+  @media (max-width:480px){nav .btn{padding:10px 14px;font-size:11px;white-space:nowrap;} nav .logo img{height:30px;}}
+  .eyebrow-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .eyebrow-row .eyebrow{margin-bottom:0;}
+  .eyebrow-aud{display:inline-block;background:transparent;color:var(--ink);border:1px solid var(--ink);font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 13px;border-radius:4px;}
+  .phase-time{margin-left:auto;font-size:12px;color:var(--ink-faint);font-weight:400;}
+  .built-for{border-top:1px solid var(--line);padding:18px 0;}
+  .built-row{display:flex;align-items:center;gap:14px 18px;flex-wrap:wrap;}
+  .built-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .role-chips{display:flex;gap:8px;flex-wrap:wrap;}
+  .role-chips span{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:6px 13px;background:#fff;color:var(--ink);}
+  .built-note{margin-left:auto;font-size:13px;color:var(--ink-faint);}
+  @media (max-width:860px){.built-note{margin-left:0;}}
+  .role-box{background:rgba(255,98,52,0.06);border:1px solid rgba(255,98,52,0.25);border-radius:8px;padding:16px 18px;margin:0 auto 26px;max-width:460px;text-align:left;}
+  .role-box-label{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:6px;}
+  .tool-result .role-box p{font-size:14px;color:var(--ink);margin:0;max-width:none;line-height:1.5;}
+  section.roles{padding:0 0 72px;text-align:center;}
+  .role-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;text-align:left;}
+  @media (max-width:1000px){.role-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.role-grid{grid-template-columns:1fr;}}
+  .role-card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;}
+  .role-card-name{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:10px;}
+  .role-card p{font-size:14px;line-height:1.5;margin:0;color:var(--ink);}
 </style>
 </head>
 <body>
@@ -158,22 +183,21 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Claude on BigQuery</span>
-      <h1>Stop Exporting. Start Asking.</h1>
-      <p class="sub">Switchboard governs your BigQuery data so your team can ask Claude direct questions, no manual exports, no waiting on an analyst.</p>
+      <div class="eyebrow-row"><span class="eyebrow">Claude on BigQuery</span><span class="eyebrow-aud">For publishers and media companies</span></div>
+      <h1>Stop Rebuilding Revenue Reports. Start Asking.</h1>
+      <p class="sub">For publisher revenue teams who rebuild the same advertiser picture from ad server, SSP and finance exports every week. Switchboard governs your revenue data in BigQuery so anyone on the team can ask Claude and get one number back.</p>
       <div class="cta-row">
         <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
         <span class="cta-note">Free white paper &middot; 12 pages</span>
       </div>
     </div>
     <div>
-      <div class="csv-card">
-        <div class="csv-check"></div>
-        <div class="csv-name">spend_export_v3_FINAL.csv</div>
-      </div>
-      <div class="waiting">waiting on analyst</div>
+      <div class="csv-card"><div class="csv-check"></div><div class="csv-name">gam_revenue_export_v3_FINAL.csv</div></div>
+      <div class="csv-card"><div class="csv-check"></div><div class="csv-name">ssp_fill_rate_q3.xlsx</div></div>
+      <div class="csv-card"><div class="csv-check"></div><div class="csv-name">direct_io_recon_SEPT.xlsx</div></div>
+      <div class="waiting">waiting on ad ops &middot; three systems, three revenue numbers</div>
       <div class="answer-card">
-        <p class="answer-q">Which advertisers grew spend fastest last quarter?</p>
+        <p class="answer-q">Which advertisers moved budget from direct to programmatic last quarter?</p>
         <div class="answer-line w1"></div>
         <div class="answer-line w2"></div>
         <div class="answer-line w3"></div>
@@ -182,12 +206,20 @@
   </div>
 </header>
 
+<div class="built-for">
+  <div class="wrap built-row">
+    <span class="built-label">Built for revenue teams at publishers and media companies</span>
+    <div class="role-chips"><span>Programmatic and yield</span><span>Direct sales</span><span>Ad ops</span><span>Rev ops</span><span>BI and data</span></div>
+    <span class="built-note">Not a publisher? This one probably isn't for you.</span>
+  </div>
+</div>
+
 <section class="tool" id="tool">
   <div class="wrap">
     <div class="tool-head">
       <div class="eyebrow-text">Quick calculator</div>
-      <h2>What is manual data pulling actually costing you?</h2>
-      <p class="tool-intro">Three quick questions about your team. We'll estimate the number nobody's actually put on this before.</p>
+      <h2>What is rebuilding revenue reports costing your team?</h2>
+      <p class="tool-intro">Five questions. A rough annual cost, plus what it means for your role.</p>
     </div>
 
     <div class="tool-card" id="quiz-card">
@@ -195,9 +227,31 @@
         <span class="q-dot" data-dot="0"></span>
         <span class="q-dot" data-dot="1"></span>
         <span class="q-dot" data-dot="2"></span>
+        <span class="q-dot" data-dot="3"></span>
+        <span class="q-dot" data-dot="4"></span>
       </div>
-      <div class="q" data-step="0">
-        <div class="q-label">How many people on your team regularly pull or export data manually?</div>
+      <div class="q" data-step="0" data-profile="company">
+        <div class="q-label">Which best describes your company?</div>
+        <div class="q-options">
+          <button class="opt" data-value="publisher">Publisher or media company</button>
+          <button class="opt" data-value="adtech">Ad tech or platform</button>
+          <button class="opt" data-value="agency">Agency, brand or advertiser</button>
+          <button class="opt" data-value="other">Something else</button>
+        </div>
+      </div>
+      <div class="q" data-step="1" data-profile="role" hidden>
+        <div class="q-label">What is your role closest to?</div>
+        <div class="q-options">
+          <button class="opt" data-value="programmatic">Programmatic or yield</button>
+          <button class="opt" data-value="sales">Direct sales or partnerships</button>
+          <button class="opt" data-value="adops">Ad ops</button>
+          <button class="opt" data-value="revops">Rev ops or finance</button>
+          <button class="opt" data-value="bi">BI or data</button>
+          <button class="opt" data-value="exec">Executive leadership</button>
+        </div>
+      </div>
+      <div class="q" data-step="2" hidden>
+        <div class="q-label">How many people on your revenue team pull or reconcile reports by hand?</div>
         <div class="q-options">
           <button class="opt" data-value="2">1 to 3 people</button>
           <button class="opt" data-value="6">4 to 8 people</button>
@@ -205,8 +259,8 @@
           <button class="opt" data-value="20">16+ people</button>
         </div>
       </div>
-      <div class="q" data-step="1" hidden>
-        <div class="q-label">About how many hours a week does each person spend on it? Exporting, pivoting, cleaning, chasing someone else's answer.</div>
+      <div class="q" data-step="3" hidden>
+        <div class="q-label">About how many hours a week does each person spend on it? Exporting, reconciling, chasing numbers.</div>
         <div class="q-options">
           <button class="opt" data-value="3.5">2 to 5 hours</button>
           <button class="opt" data-value="7.5">5 to 10 hours</button>
@@ -214,7 +268,7 @@
           <button class="opt" data-value="18">15+ hours</button>
         </div>
       </div>
-      <div class="q" data-step="2" hidden>
+      <div class="q" data-step="4" hidden>
         <div class="q-label">What's the fully-loaded hourly cost of that time? Salary plus overhead, roughly.</div>
         <div class="q-options">
           <button class="opt" data-value="50">About $50/hr</button>
@@ -231,11 +285,33 @@
       <h3 id="result-title"></h3>
       <p id="result-body"></p>
       <div class="result-gap" id="result-gap"></div>
+      <div class="role-box" id="role-box" hidden>
+        <div class="role-box-label" id="role-box-label"></div>
+        <p id="role-box-text"></p>
+      </div>
       <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
       <button class="result-restart" id="result-restart">Run it again</button>
     </div>
   </div>
 </section>
+
+<script>
+/* Profile answers (company + role) and the role-specific result box. */
+window.SB_PROFILE = {};
+window.sbRenderRole = function(copy){
+  var p = window.SB_PROFILE, box = document.getElementById('role-box');
+  if(!box) return;
+  var names = {programmatic:'programmatic and yield', sales:'direct sales', adops:'ad ops', revops:'rev ops', bi:'BI and data', exec:'revenue leadership'};
+  if(p.company && p.company !== 'publisher'){
+    document.getElementById('role-box-label').textContent = 'A quick note';
+    document.getElementById('role-box-text').textContent = "Switchboard is built around publisher revenue data, so this may not map cleanly to your setup. The playbook is still a useful read, and our team is happy to point you in the right direction.";
+  } else if(p.role && copy[p.role]){
+    document.getElementById('role-box-label').textContent = 'What this means for ' + names[p.role];
+    document.getElementById('role-box-text').textContent = copy[p.role];
+  } else { box.hidden = true; return; }
+  box.hidden = false;
+};
+</script>
 
 <script>
 (function(){
@@ -258,9 +334,9 @@
   }
 
   function finish(){
-    var people = answers[0];
-    var hoursEach = answers[1];
-    var rate = answers[2];
+    var people = answers[2];
+    var hoursEach = answers[3];
+    var rate = answers[4];
     var weeklyHours = people * hoursEach;
     var weeklyCost = weeklyHours * rate;
     var annualCost = weeklyCost * 48;
@@ -268,9 +344,17 @@
     var fteText = fte < 1 ? "about " + Math.round(fte * 100) + "% of one full-time analyst" : "about " + fte.toFixed(1).replace(/\.0$/, '') + " full-time analysts";
 
     document.getElementById('result-title').textContent = money(annualCost) + " a year, give or take.";
-    document.getElementById('result-body').textContent = "Based on what you told us, your team is spending roughly " + Math.round(weeklyHours) + " hours a week, " + fteText + " worth of time, on exports and pivots instead of analysis.";
+    document.getElementById('result-body').textContent = "Based on what you told us, your team is spending roughly " + Math.round(weeklyHours) + " hours a week, " + fteText + " worth of time, rebuilding the revenue picture instead of acting on it.";
     document.getElementById('result-gap').textContent = "That's " + money(weeklyCost) + " a week, or " + money(weeklyCost * 4.33) + " a month, going to work a governed layer would mostly eliminate.";
 
+    window.sbRenderRole({
+    programmatic: "Every export you wait on is a pricing decision made a week late.",
+    sales: "You're pitching advertisers off a spreadsheet someone rebuilt on Monday.",
+    adops: "Your team runs a reporting queue instead of a revenue function.",
+    revops: "Two systems, two revenue numbers, and your team is the one explaining why every month.",
+    bi: "You're the export service for every team that can't query the data themselves.",
+    exec: "You're paying analyst salaries to reconcile numbers, not to find revenue."
+  });
     quizCard.hidden = true;
     resultEl.hidden = false;
   }
@@ -279,7 +363,9 @@
     var opts = stepEl.querySelectorAll('.opt');
     opts.forEach(function(opt){
       opt.addEventListener('click', function(){
-        answers[stepIdx] = parseFloat(opt.getAttribute('data-value'));
+        var prof = stepEl.getAttribute('data-profile');
+        if(prof){ window.SB_PROFILE[prof] = opt.getAttribute('data-value'); }
+        answers[stepIdx] = prof ? null : parseFloat(opt.getAttribute('data-value'));
         if(stepIdx < steps.length - 1){
           current = stepIdx + 1;
           showStep(current);
@@ -299,6 +385,7 @@
 
   document.getElementById('result-restart').addEventListener('click', function(){
     answers = [];
+    window.SB_PROFILE = {};
     current = 0;
     quizCard.hidden = false;
     resultEl.hidden = true;
@@ -312,31 +399,45 @@
 <section class="proof">
   <div class="wrap">
     <div class="proof-grid">
-      <div><div class="stat-num">40%</div><div class="stat-label">of a data team's week goes to exporting and pivoting</div></div>
-      <div><div class="stat-num">4 days</div><div class="stat-label">typical wait between asking and getting a number back</div></div>
-      <div><div class="stat-num">5 tools</div><div class="stat-label">touched on the way to one answer</div></div>
+      <div><div class="stat-num">40%</div><div class="stat-label">of a publisher revenue analyst's week goes to exporting and reconciling</div></div>
+      <div><div class="stat-num">4 days</div><div class="stat-label">typical wait between an advertiser question and a trusted number</div></div>
+      <div><div class="stat-num">5 systems</div><div class="stat-label">ad server, SSPs, direct, subscriptions and finance, touched on the way to one answer</div></div>
     </div>
-    <div class="disclaimer">Reflects patterns we consistently see in data teams before they bring in a governed layer, not a formal study.</div>
+    <div class="disclaimer">Reflects patterns we consistently see across publisher revenue teams, not a formal study.</div>
   </div>
 </section>
 
 <section class="how">
   <div class="wrap">
     <div class="eyebrow-text">How it works</div>
-    <h2>From scattered exports to a direct answer</h2>
+    <h2>From scattered exports to one governed number</h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">Step 1</div>
-        <p>Your ad platforms, warehouse, and finance systems stay fragmented and ungoverned</p>
+        <p>Ad server, SSP, direct IO, subscription and finance data sit in separate systems with separate definitions of revenue</p>
       </div>
       <div class="step">
         <div class="step-num">Step 2</div>
-        <p>Switchboard unifies them into one governed layer, with IAM-scoped, restrictive-by-default access before any model touches it</p>
+        <p>Switchboard unifies and governs your revenue data layer in BigQuery, with IAM-scoped, restrictive-by-default access before any model touches it</p>
       </div>
       <div class="step">
         <div class="step-num">Step 3</div>
-        <p>Claude queries that governed layer directly, so your team gets a direct answer instead of a request in someone's queue</p>
+        <p>Anyone on the revenue team asks Claude in plain language and gets the same governed number back</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="roles">
+  <div class="wrap">
+    <div class="eyebrow-text">By role</div>
+    <h2>What the export loop costs your team</h2>
+    <div class="role-grid">
+      <div class="role-card"><div class="role-card-name">Programmatic and yield</div><p>Every export you wait on is a pricing decision made a week late.</p></div>
+      <div class="role-card"><div class="role-card-name">Direct sales</div><p>You're pitching advertisers off a spreadsheet someone rebuilt on Monday.</p></div>
+      <div class="role-card"><div class="role-card-name">Ad ops</div><p>Your team runs a reporting queue instead of a revenue function.</p></div>
+      <div class="role-card"><div class="role-card-name">Rev ops</div><p>Two systems, two revenue numbers, and your team is the one explaining why every month.</p></div>
+      <div class="role-card"><div class="role-card-name">BI and data</div><p>You're the export service for every team that can't query the data themselves.</p></div>
     </div>
   </div>
 </section>
@@ -368,7 +469,7 @@
     </div>
     <div class="faq-item">
       <p class="faq-q">Who is this written for?</p>
-      <p class="faq-a">Whoever owns the initiative's outcome, not just the team running the pilot. It assumes you're evaluating this, not implementing it yourself.</p>
+      <p class="faq-a">Revenue leaders at publishers and media companies: programmatic and yield, direct sales, ad ops, rev ops and BI. If you are not on the publisher side, it will be less directly useful.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Will someone from Switchboard reach out?</p>
@@ -388,8 +489,8 @@
       </div>
       <div>
         <div class="offer-eyebrow">Free white paper</div>
-        <h3>Get out of the export queue.</h3>
-        <p class="sub">A practical read on what has to be true of your data before your team can ask Claude direct questions instead of pulling exports: governance, definitions, and access that make it possible.</p>
+        <h3>Get your revenue team out of the export queue.</h3>
+        <p class="sub">A practical read on what has to be true of publisher revenue data before your team can ask Claude direct questions instead of pulling exports: governance, shared definitions, and access that make it possible.</p>
         <div id="playbook-form-wrap">
           <div class="form-fallback" id="form-fallback">Loading form&hellip;</div>
           <script src="https://js-na2.hsforms.net/forms/embed/20563228.js" defer></script>
