@@ -136,7 +136,6 @@
   .offer-card h3{font-size:26px;font-weight:600;margin:0 0 14px;letter-spacing:-0.01em;}
   .offer-card .sub{font-size:15px;margin-bottom:26px;}
   #playbook-form-wrap{background:#fff;border-radius:10px;padding:8px;min-height:80px;}
-  .form-fallback{font-size:13px;color:var(--ink-faint);padding:18px;text-align:center;}
   .offer-foot{font-size:12px;color:var(--ink-faint);margin-top:14px;}
 
   footer{border-top:1px solid var(--line);padding:32px 0;}
@@ -172,6 +171,25 @@
   .role-card{border:1px solid var(--line);border-radius:12px;padding:22px;background:#fff;}
   .role-card-name{font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--coral-dark);margin-bottom:10px;}
   .role-card p{font-size:14px;line-height:1.5;margin:0;color:var(--ink);}
+
+  /* native HubSpot form (2026-09-24) */
+  #playbook-form-wrap{padding:26px 26px 22px;}
+  .pf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:560px){.pf-row{grid-template-columns:1fr;}}
+  .pf-field{display:flex;flex-direction:column;margin-bottom:14px;}
+  .pf-field label{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+  .pf-field label .req{color:var(--coral-dark);}
+  .pf-field input{font-family:inherit;font-size:15px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);}
+  .pf-field input:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,98,52,0.15);}
+  .pf-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  #pf-submit{width:100%;margin-top:4px;font-family:inherit;}
+  #pf-submit[disabled]{opacity:0.6;cursor:default;}
+  .pf-error{font-size:13px;color:#B3261E;margin:10px 0 0;}
+  .pf-legal{font-size:12px;color:var(--ink-faint);margin:12px 0 0;line-height:1.5;}
+  .pf-legal a{color:var(--ink-soft);}
+  .pf-done{text-align:center;padding:24px 8px;}
+  .pf-done h4{font-size:20px;margin:0 0 8px;}
+  .pf-done p{font-size:14px;color:var(--ink-soft);margin:0;}
 </style>
 </head>
 <body>
@@ -369,6 +387,7 @@ window.sbRenderRole = function(copy){
       opt.addEventListener('click', function(){
         var prof = stepEl.getAttribute('data-profile');
         if(prof){ window.SB_PROFILE[prof] = opt.getAttribute('data-value'); }
+        window.SB_QA = window.SB_QA || []; window.SB_QA[stepIdx] = [stepEl.querySelector('.q-label').textContent.trim(), opt.textContent.trim()];
         answers[stepIdx] = prof ? null : parseFloat(opt.getAttribute('data-value'));
         if(stepIdx < steps.length - 1){
           current = stepIdx + 1;
@@ -390,6 +409,7 @@ window.sbRenderRole = function(copy){
   document.getElementById('result-restart').addEventListener('click', function(){
     answers = [];
     window.SB_PROFILE = {};
+    window.SB_QA = [];
     current = 0;
     quizCard.hidden = false;
     resultEl.hidden = true;
@@ -496,28 +516,110 @@ window.sbRenderRole = function(copy){
         <h3>Protect your analysts' focus time.</h3>
         <p class="sub">A practical read on what has to be true of publisher revenue data before sales, ad ops and leadership can ask Claude directly instead of queueing up for an analyst.</p>
         <div id="playbook-form-wrap">
-          <div class="form-fallback" id="form-fallback">Loading form&hellip;</div>
-          <script src="https://js-na2.hsforms.net/forms/embed/20563228.js" defer></script>
-          <div class="hs-form-frame" data-region="na2" data-form-id="f8c68b6c-a871-4a41-9221-f3480c60360b" data-portal-id="20563228"></div>
+          <form id="playbook-form" novalidate>
+            <div class="pf-row">
+              <div class="pf-field"><label for="pf-first">First name <span class="req">*</span></label><input id="pf-first" name="firstname" autocomplete="given-name" required></div>
+              <div class="pf-field"><label for="pf-last">Last name</label><input id="pf-last" name="lastname" autocomplete="family-name"></div>
+            </div>
+            <div class="pf-field"><label for="pf-email">Work email <span class="req">*</span></label><input id="pf-email" name="email" type="email" autocomplete="email" required></div>
+            <div class="pf-field"><label for="pf-company">Company name</label><input id="pf-company" name="company" autocomplete="organization"></div>
+            <div class="pf-hp" aria-hidden="true"><label for="pf-website">Website</label><input id="pf-website" name="website" tabindex="-1" autocomplete="off"></div>
+            <button class="btn btn-solid" id="pf-submit" type="submit">Get the Playbook</button>
+            <p class="pf-error" id="pf-error" hidden></p>
+            <p class="pf-legal">We will email you the playbook. See our <a href="https://switchboard-software.com/privacy-policy/" target="_blank" rel="noopener">privacy policy</a>.</p>
+          </form>
+          <div class="pf-done" id="pf-done" hidden>
+            <h4>Thanks, it's on its way.</h4>
+            <p>Check your inbox for the Governed Data Playbook.</p>
+          </div>
         </div>
-        <script>
-          (function(){
-            var fallback = document.getElementById('form-fallback');
-            var frame = document.querySelector('.hs-form-frame');
-            if(!fallback || !frame) return;
-            function hideIfReady(){
-              if(frame.children.length > 0){
-                fallback.style.display = 'none';
-                return true;
-              }
-              return false;
-            }
-            if(hideIfReady()) return;
-            var obs = new MutationObserver(function(){ if(hideIfReady()) obs.disconnect(); });
-            obs.observe(frame, {childList:true, subtree:true});
-            setTimeout(function(){ obs.disconnect(); }, 15000);
-          })();
-        </script>
+<script>
+/* Native HubSpot form: posts to the Forms v3 submissions API against the same form
+   (portal 20563228, form f8c68b6c-...), so HubSpot workflows, the hubspotutk tracking
+   cookie, page attribution, UTMs and click IDs all carry over. Quiz Q&A and source
+   params go in the contact's `message` field (a hidden field on the HubSpot form). */
+(function(){
+  var PORTAL = '20563228', FORM = 'f8c68b6c-a871-4a41-9221-f3480c60360b';
+  var PAGE_LABEL = 'Analyst Time', SLUG = 'analyst-time';
+  var form = document.getElementById('playbook-form');
+  if(!form) return;
+  var errEl = document.getElementById('pf-error'), btn = document.getElementById('pf-submit');
+
+  function cookie(name){ var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : undefined; }
+  function showErr(t){ errEl.textContent = t; errEl.hidden = false; }
+
+  function buildMessage(){
+    var lines = ['Landing page: ' + PAGE_LABEL + ' (/' + SLUG + ')'];
+    var res = document.getElementById('tool-result');
+    var qa = (window.SB_QA || []).filter(Boolean);
+    if(res && !res.hidden && qa.length){
+      var bits = [];
+      var badge = res.querySelector('.result-badge'); if(badge && badge.textContent.trim()) bits.push(badge.textContent.trim());
+      var h3 = res.querySelector('h3'); if(h3 && h3.textContent.trim()) bits.push(h3.textContent.trim());
+      lines.push('Result: ' + bits.join(' | '));
+      var gap = res.querySelector('.result-gap'); if(gap && !gap.hidden && gap.textContent.trim()) lines.push(gap.textContent.trim());
+      lines.push('');
+      lines.push('Quiz answers:');
+      qa.forEach(function(p){ lines.push('Q: ' + p[0]); lines.push('A: ' + p[1]); });
+    } else if(qa.length){
+      lines.push('Quiz: started but not finished');
+      qa.forEach(function(p){ lines.push('Q: ' + p[0]); lines.push('A: ' + p[1]); });
+    } else {
+      lines.push('Quiz: not taken');
+    }
+    var params = new URLSearchParams(location.search), src = [];
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','fbclid','li_fat_id'].forEach(function(k){ if(params.get(k)) src.push(k + '=' + params.get(k)); });
+    lines.push('');
+    lines.push('Source: ' + (src.length ? src.join(' | ') : 'no UTM or click ID on landing URL'));
+    return lines.join('\n');
+  }
+
+  function fireConversion(){
+    try{
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({event:'playbook_form_submit', form_id:FORM, landing_page:SLUG});
+      if(typeof window.gtag === 'function') window.gtag('event', 'generate_lead', {form_id:FORM, landing_page:SLUG});
+      if(typeof window.fbq === 'function') window.fbq('track', 'Lead', {content_name:'Governed Data Playbook', landing_page:SLUG});
+      if(typeof window.lintrk === 'function' && window.SB_LINKEDIN_CONVERSION_ID) window.lintrk('track', {conversion_id: window.SB_LINKEDIN_CONVERSION_ID});
+    }catch(e){}
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    errEl.hidden = true;
+    var v = function(id){ return document.getElementById(id).value.trim(); };
+    if(v('pf-website')){ form.hidden = true; document.getElementById('pf-done').hidden = false; return; }
+    if(!v('pf-first')){ showErr('Please add your first name.'); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('pf-email'))){ showErr('Please enter a valid work email.'); return; }
+    btn.disabled = true; btn.textContent = 'Sending...';
+    var fields = [
+      {objectTypeId:'0-1', name:'firstname', value:v('pf-first')},
+      {objectTypeId:'0-1', name:'lastname', value:v('pf-last')},
+      {objectTypeId:'0-1', name:'email', value:v('pf-email')},
+      {objectTypeId:'0-1', name:'company', value:v('pf-company')},
+      {objectTypeId:'0-1', name:'message', value:buildMessage()}
+    ].filter(function(f){ return f.value; });
+    var context = {pageUri: location.href, pageName: document.title};
+    var hutk = cookie('hubspotutk'); if(hutk) context.hutk = hutk;
+    fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL + '/' + FORM, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({submittedAt: Date.now(), fields: fields, context: context})
+    }).then(function(r){ return r.json().then(function(j){ return {ok:r.ok, j:j}; }); })
+      .then(function(res){
+        if(!res.ok){
+          var e = res.j && res.j.errors && res.j.errors[0];
+          showErr(e && /email/i.test(e.message || '') ? 'Please enter a valid work email.' : 'Something went wrong. Please try again.');
+          btn.disabled = false; btn.textContent = 'Get the Playbook';
+          return;
+        }
+        fireConversion();
+        form.hidden = true; document.getElementById('pf-done').hidden = false;
+        if(res.j && res.j.redirectUri){ setTimeout(function(){ window.location.href = res.j.redirectUri; }, 1500); }
+      })
+      .catch(function(){ showErr('Something went wrong. Please try again.'); btn.disabled = false; btn.textContent = 'Get the Playbook'; });
+  });
+})();
+</script>
         <div class="offer-foot">No sales call required. Unsubscribe any time.</div>
       </div>
     </div>
