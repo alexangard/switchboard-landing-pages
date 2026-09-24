@@ -564,7 +564,7 @@ window.sbRenderRole = function(copy){
         <h3>Fix the revenue data layer before the next pilot stalls.</h3>
         <p class="sub">A practical read on what has to be true of publisher revenue data before an AI initiative reaches production: governance, shared definitions, and access that survive past the demo.</p>
         <div id="playbook-form-wrap">
-          <form id="playbook-form" novalidate>
+          <form id="playbook-form" novalidate data-hs-do-not-collect="true">
             <div class="pf-row">
               <div class="pf-field"><label for="pf-first">First name <span class="req">*</span></label><input id="pf-first" name="firstname" autocomplete="given-name" required></div>
               <div class="pf-field"><label for="pf-last">Last name</label><input id="pf-last" name="lastname" autocomplete="family-name"></div>
@@ -646,7 +646,10 @@ window.sbRenderRole = function(copy){
       {objectTypeId:'0-1', name:'email', value:v('pf-email')},
       {objectTypeId:'0-1', name:'company', value:v('pf-company')},
       {objectTypeId:'0-1', name:'message', value:buildMessage()}
-    ].filter(function(f){ return f.value; });
+    ];
+    var qs = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ if(qs.get(k)) fields.push({objectTypeId:'0-1', name:k, value:qs.get(k)}); });
+    fields = fields.filter(function(f){ return f.value; });
     var context = {pageUri: location.href, pageName: document.title};
     var hutk = cookie('hubspotutk'); if(hutk) context.hutk = hutk;
     fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL + '/' + FORM, {
