@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5D632V3');</script>
+<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stop Reporting on Last Week's Revenue. | Switchboard</title>
@@ -17,8 +24,6 @@
 <meta name="twitter:title" content="Stop Reporting on Last Week's Revenue.">
 <meta name="twitter:description" content="Campaigns pace daily and yield moves hourly. Switchboard governs publisher revenue data in BigQuery so teams can ask Claude what is happening right now.">
 <meta name="twitter:image" content="https://landing.switchboard-software.com/og-stale-data.png">
-<!-- HubSpot tracking: captures UTM parameters and page analytics into contact records -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/20563228.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -197,6 +202,10 @@
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D632V3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="top-rule"></div>
 
 <div class="wrap">
@@ -622,12 +631,11 @@ window.sbRenderRole = function(copy){
   }
 
   function fireConversion(){
+    /* Ad conversions (Google Ads, Meta, LinkedIn, GA4 generate_lead) fire in GTM-5D632V3
+       on switchboard-software.com/form-success/, where this form redirects. */
     try{
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event:'playbook_form_submit', form_id:FORM, landing_page:SLUG});
-      if(typeof window.gtag === 'function') window.gtag('event', 'generate_lead', {form_id:FORM, landing_page:SLUG});
-      if(typeof window.fbq === 'function') window.fbq('track', 'Lead', {content_name:'Governed Data Playbook', landing_page:SLUG});
-      if(typeof window.lintrk === 'function' && window.SB_LINKEDIN_CONVERSION_ID) window.lintrk('track', {conversion_id: window.SB_LINKEDIN_CONVERSION_ID});
     }catch(e){}
   }
 
