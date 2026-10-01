@@ -66,6 +66,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sub{font-size:18px;line-height:1.55;color:var(--ink-soft);margin:0 0 30px;max-width:520px;}
   .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
   .cta-note{font-size:13px;color:var(--ink-faint);}
+  .warehouse-note{font-size:13px;color:var(--ink-faint);margin:14px 0 0;}
 
   .csv-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
   .csv-check{width:16px;height:16px;border:2px solid var(--line);border-radius:3px;flex-shrink:0;}
@@ -221,6 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
         <span class="cta-note">Free white paper &middot; 12 pages</span>
       </div>
+      <p class="warehouse-note">Works with BigQuery and other leading data warehouses.</p>
     </div>
     <div>
       <div class="waiting">can you pull CPMs by site?</div>
@@ -451,7 +453,7 @@ window.sbRenderRole = function(copy){
       </div>
       <div class="step">
         <div class="step-num">Step 2</div>
-        <p>Switchboard unifies and governs your revenue data layer in BigQuery, with IAM-scoped, restrictive-by-default access before any model touches it</p>
+        <p>Switchboard unifies and governs your revenue data layer in BigQuery or the warehouse you already use, with IAM-scoped, restrictive-by-default access before any model touches it</p>
       </div>
       <div class="step">
         <div class="step-num">Step 3</div>
@@ -497,8 +499,8 @@ window.sbRenderRole = function(copy){
       <p class="faq-a">Three things: why ad hoc revenue questions pile up on the same few analysts, what has to be true of your revenue data before anyone else can ask it directly, and how teams roll that access out safely.</p>
     </div>
     <div class="faq-item">
-      <p class="faq-q">Does this apply if we're not on BigQuery yet?</p>
-      <p class="faq-a">The examples are BigQuery-first since that's where we see this most, but the underlying data governance problem doesn't change much by warehouse.</p>
+      <p class="faq-q">Does this apply if we're not on BigQuery?</p>
+      <p class="faq-a">Yes. Switchboard works with BigQuery and other leading data warehouses. The playbook's examples are BigQuery-first since that's where we see this most, but the underlying data governance problem doesn't change much by warehouse.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Who is this written for?</p>
