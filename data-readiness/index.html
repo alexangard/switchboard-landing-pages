@@ -260,7 +260,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="tool-intro">Six questions. A readiness score, plus what it means for your role.</p>
     </div>
 
-    <div class="tool-card" id="quiz-card">
+    <div class="tool-card" id="quiz-card" data-no-cta>
       <div class="q-progress" id="q-progress">
         <span class="q-dot" data-dot="0"></span>
         <span class="q-dot" data-dot="1"></span>
@@ -338,7 +338,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p id="role-box-text"></p>
       </div>
       <a class="btn btn-solid" href="#playbook">Get the Playbook</a>
-      <button class="result-restart" id="result-restart">Retake the assessment</button>
+      <button class="result-restart" id="result-restart" data-no-cta>Retake the assessment</button>
     </div>
   </div>
 </section>
@@ -640,7 +640,8 @@ window.sbRenderRole = function(copy){
        on switchboard-software.com/form-success/, where this form redirects. */
     try{
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({event:'playbook_form_submit', form_id:FORM, landing_page:SLUG});
+      var run = (window.SB_TRACK_RUN && window.SB_TRACK_RUN()) || {};
+      window.dataLayer.push({event:'playbook_form_submit', form_id:FORM, landing_page:SLUG, quiz_completed: !!run.completed, quiz_result_label: run.label || ''});
     }catch(e){}
   }
 
@@ -700,5 +701,100 @@ window.sbRenderRole = function(copy){
   </div>
 </footer>
 
+<script>
+/* Landing page analytics: dataLayer events for GTM-5D632V3 (see GTM spec). No personal data is pushed. */
+(function(){
+  var SLUG = 'data-readiness';
+  var dl = window.dataLayer = window.dataLayer || [];
+  function push(o){ o.landing_page = SLUG; try { dl.push(o); } catch(e){} }
+  function txt(el){ return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : ''; }
+  var run = { started:false, completed:false, label:'', title:'' };
+  var steps = document.querySelectorAll('#quiz-card .q');
+  var total = steps.length;
+
+  /* Quiz answers (capture phase so this runs before the page's own handler swaps steps) */
+  var card = document.getElementById('quiz-card');
+  if(card){
+    card.addEventListener('click', function(e){
+      var opt = e.target.closest('.opt'); if(!opt) return;
+      var q = opt.closest('.q'); if(!q) return;
+      var n = parseInt(q.getAttribute('data-step'), 10) + 1;
+      if(!run.started){ run.started = true; push({event:'quiz_start', quiz_total_questions: total}); }
+      push({
+        event: 'quiz_answer',
+        quiz_question_number: n,
+        quiz_total_questions: total,
+        quiz_question: txt(q.querySelector('.q-label')),
+        quiz_answer: txt(opt),
+        quiz_answer_value: opt.getAttribute('data-value') || opt.getAttribute('data-score') || '',
+        quiz_profile_field: q.getAttribute('data-profile') || ''
+      });
+    }, true);
+  }
+  var back = document.getElementById('q-back');
+  if(back){
+    back.addEventListener('click', function(){
+      var vis = [].filter.call(steps, function(s){ return !s.hidden; })[0];
+      push({event:'quiz_back', quiz_question_number: vis ? parseInt(vis.getAttribute('data-step'),10) + 1 : null});
+    }, true);
+  }
+
+  /* Result shown = quiz complete */
+  var res = document.getElementById('tool-result');
+  if(res && window.MutationObserver){
+    new MutationObserver(function(){
+      if(res.hidden || run.completed) return;
+      run.completed = true;
+      var p = window.SB_PROFILE || {};
+      run.label = txt(res.querySelector('.result-badge'));
+      run.title = txt(document.getElementById('result-title'));
+      var gap = document.getElementById('result-gap');
+      push({
+        event: 'quiz_complete',
+        quiz_result_label: run.label,
+        quiz_result_title: run.title,
+        quiz_result_gap: gap && !gap.hidden ? txt(gap) : '',
+        quiz_company_type: p.company || '',
+        quiz_role: p.role || '',
+        quiz_total_questions: total
+      });
+    }).observe(res, {attributes:true, attributeFilter:['hidden']});
+  }
+  var restart = document.getElementById('result-restart');
+  if(restart){
+    restart.addEventListener('click', function(){
+      push({event:'quiz_restart', quiz_result_label: run.label});
+      run = { started:false, completed:false, label:'', title:'' };
+    }, true);
+  }
+
+  /* "Get the Playbook" clicks, with where on the page they happened */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href="#playbook"]'); if(!a) return;
+    var pos = a.closest('#tool-result') ? 'quiz_result'
+            : a.closest('header.hero, .hero') ? 'hero'
+            : a.closest('nav, .nav, .topbar, .site-header') ? 'header'
+            : 'body';
+    push({event:'playbook_cta_click', cta_position: pos, quiz_completed: run.completed});
+  }, true);
+
+  /* Form start (first interaction) and errors; the success event is pushed by the form script */
+  var form = document.getElementById('playbook-form');
+  if(form){
+    var begun = false;
+    form.addEventListener('focusin', function(){
+      if(begun) return; begun = true;
+      push({event:'playbook_form_start', quiz_completed: run.completed, quiz_result_label: run.label});
+    });
+    var err = document.getElementById('pf-error');
+    if(err && window.MutationObserver){
+      new MutationObserver(function(){
+        if(!err.hidden && txt(err)) push({event:'playbook_form_error', form_error: txt(err)});
+      }).observe(err, {attributes:true, attributeFilter:['hidden'], childList:true, characterData:true, subtree:true});
+    }
+  }
+  window.SB_TRACK_RUN = function(){ return run; };
+})();
+</script>
 </body>
 </html>
